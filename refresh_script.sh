@@ -3,7 +3,7 @@
 # user set params
 userPath=""
 oneWeek=604800
-expiresTime=${oneWeek}
+expireTime=${oneWeek}
 
 #consts
 fields=("vcfUrl" "tbiUrl" "coverageBamUrl" "coverageBaiUrl" "rnaSeqBamUrl" "rnaSeqBaiUrl" "atacSeqBamUrl" "atacSeqBaiUrl" "cnvUrl")
@@ -13,20 +13,17 @@ suffix="?AWSAccessKeyId"
 # check that user set path
 if [ -z "$userPath" ]
 then
-  echo "Please set path where your json config files exist...exiting..."
-  exit 1
+  echo "searching current directory for .json configuration files..."
 fi
 
 # add on suffix to path
-path="$userPath/*.json"
+path="$userPath*.json"
 
 for f in $path
   do
 
-  echo "$userPath/package.json"
- 
   # don't overwrite package.json
-  if [ "$f" = "$userPath/package.json" ];
+  if [ "$f" = "${userPath}package.json" ];
   then
     echo "skipping package.json..."
     continue

@@ -1,6 +1,6 @@
 {
   "name": "oncogene.iobio_refresh_script",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "description": "refreshes s3 urls in oncogene.iobio config files",
   "main": "refresh_script.sh",
