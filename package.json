@@ -1,1 +1,25 @@
-{"name":"o{"id":"","order":"","selectedSample":"","isTumor":"","vcfUrl":null,"tbiUrl":null,"coverageBamUrl":null,"coverageBaiUrl":null,"rnaSeqBamUrl":null,"rnaSeqBaiUrl":null,"atacSeqBamUrl":null,"atacSeqBaiUrl":null,"cnvUrl":null}]}
+{
+  "name": "oncogene.iobio_refresh_script",
+  "version": "1.0.1",
+  "private": true,
+  "description": "refreshes s3 urls in oncogene.iobio config files",
+  "main": "refresh_script.sh",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefinfection/helpers.git"
+  },
+  "keywords": [],
+  "author": "stephanie georges",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stefinfection/helpers/issues"
+  },
+  "homepage": "https://github.com/stefinfection/helpers#readme",
+  "dependencies": {
+   "node-jq": "^1.6",
+   "aws-cli": "^1.18.181"
+  }
+}
