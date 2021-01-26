@@ -1,12 +1,28 @@
 #!/bin/bash
+
+# user set params
+path=""
+oneWeek=604800
+expiresTime=${oneWeek}
+
 #consts
 fields=("vcfUrl" "tbiUrl" "coverageBamUrl" "coverageBaiUrl" "rnaSeqBamUrl" "rnaSeqBaiUrl" "atacSeqBamUrl" "atacSeqBaiUrl" "cnvUrl")
 staticFields=("id" "order" "selectedSample" "isTumor")
 suffix="?AWSAccessKeyId"
-oneWeek=604800
 
-for f in *.json
+# check that user set path
+if [ -z "$path" ]
+then
+  echo "Please set path where your json config files exist...exiting..."
+  exit 1
+fi
+
+# add on suffix to path
+path="$path/*.json"
+
+for f in $path
   do
+  echo "updating ${f}..."
   text=$(<$f)
  
   # get index of "samples" field
@@ -49,7 +65,7 @@ for f in *.json
       else 
         # create new presigned url & add
         path="s3://${path}"
-        newUrl=$( aws s3 presign $path --expires-in=$oneWeek )
+        newUrl=$( aws s3 presign $path --expires-in=$expireTime )
         out+="\"${field}\":\"${newUrl}\","
       fi
     done
