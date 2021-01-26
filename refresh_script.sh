@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # user set params
-path=""
+userPath=""
 oneWeek=604800
 expiresTime=${oneWeek}
 
@@ -11,17 +11,27 @@ staticFields=("id" "order" "selectedSample" "isTumor")
 suffix="?AWSAccessKeyId"
 
 # check that user set path
-if [ -z "$path" ]
+if [ -z "$userPath" ]
 then
   echo "Please set path where your json config files exist...exiting..."
   exit 1
 fi
 
 # add on suffix to path
-path="$path/*.json"
+path="$userPath/*.json"
 
 for f in $path
   do
+
+  echo "$userPath/package.json"
+ 
+  # don't overwrite package.json
+  if [ "$f" = "$userPath/package.json" ];
+  then
+    echo "skipping package.json..."
+    continue
+  fi
+
   echo "updating ${f}..."
   text=$(<$f)
  
